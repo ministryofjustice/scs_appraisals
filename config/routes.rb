@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :user_uploads, only: [:create]
     resources :users
     resource :password_reset, only: [:new, :create]
+    resources :settings, only: [:update]
   end
 
   resources :reviews
