@@ -35,6 +35,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', '~> 0.7.1', require: false
   gem 'simplecov-rcov', require: false
+  gem 'timecop'
 end
 
 group :development, :test do
