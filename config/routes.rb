@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :users
     resource :password_reset, only: [:new, :create, :edit, :update]
     resources :settings, only: [:update]
+    resources :introductory_mailings, only: [:create]
+    resources :closure_mailings, only: [:create]
   end
 
   resources :reviews

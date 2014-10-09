@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 feature 'User maintenance' do
-
-  let(:password) { generate(:password) }
   let(:user) { create(:admin_user, name: 'Bob') }
-  let(:identity) { create(:identity, password: password, user: user) }
 
-  scenario 'Creating and editing users' do
+  before do
+    log_in_as user
+  end
+
+  scenario 'Creating users' do
     visit admin_path
-    log_in identity.username, password
 
     click_link 'Manage users'
 
@@ -16,14 +16,14 @@ feature 'User maintenance' do
     fill_in 'Name', with: 'Alice'
     fill_in 'Email', with: 'alice@example.com'
     check 'Participant'
-    click_button 'Create User'
+    click_button 'Create'
 
     click_link 'New user'
     fill_in 'Name', with: 'Bob'
     fill_in 'Email', with: 'bob@example.com'
     select 'Alice', from: 'Manager'
     check 'Participant'
-    click_button 'Create User'
+    click_button 'Create'
 
     alice = User.where(email: 'alice@example.com').first
     bob = User.where(email: 'bob@example.com').first
