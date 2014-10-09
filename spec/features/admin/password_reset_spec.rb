@@ -33,7 +33,9 @@ feature 'Administration password reset' do
     click_button 'Reset password'
 
     visit new_login_path
-    log_in identity.username, new_password
+    fill_in 'Username', with: identity.username
+    fill_in 'Password', with: new_password
+    click_button 'Log in'
 
     expect(current_path).to eql(admin_path)
     expect(page).to have_text("Logged in as #{user.name}")
