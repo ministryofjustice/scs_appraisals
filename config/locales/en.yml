@@ -53,6 +53,9 @@ en:
       user_uploads:
         uploaded: 'Users uploaded successfully'
         upload_failed: 'An error occurred. No users were uploaded'
+      password_resets:
+        token_expired: 'Your password reset token has expired'
+        link_sent: 'Password reset link sent'
   helpers:
     submit:
       invitation:
