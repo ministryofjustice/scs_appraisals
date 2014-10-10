@@ -32,13 +32,7 @@ module SCSAppraisals
     config.app_title = 'SCS 360° Appraisals'
 
     config.phase = 'alpha'
-    config.feedback_url =
-      'mailto:scs-appraisals-feedback@digital.justice.gov.uk'
-
-    config.valid_login_domains = %w[
-      digital.justice.gov.uk
-      digital.cabinet-office.gov.uk
-    ]
+    config.feedback_url = ENV.fetch('FEEDBACK_URL')
 
     config.noreply_email = ENV.fetch('EMAIL_NOREPLY_ADDRESS')
 
