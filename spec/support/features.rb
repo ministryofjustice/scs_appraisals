@@ -7,6 +7,10 @@ module SpecSupport
       IntroductionNotification.new(user).notify
     end
 
+    def clear_emails!
+      ActionMailer::Base.deliveries.replace []
+    end
+
     def last_email
       ActionMailer::Base.deliveries.last
     end
