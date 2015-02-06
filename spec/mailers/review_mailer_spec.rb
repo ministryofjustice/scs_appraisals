@@ -16,6 +16,7 @@ describe ReviewMailer do
     create(:recipient, name: subject_name, email: subject_email)
   }
   let(:author_name) { 'Author' }
+  let(:from_email) { ReviewMailer.default[:from] }
 
   describe 'feedback request email' do
     let(:author_email) { 'banana@tropicalfruits.com' }
@@ -33,6 +34,10 @@ describe ReviewMailer do
 
     it 'is sent to the requested review author' do
       expect(email.to.first).to eql review.author_email
+    end
+
+    it 'comes from the default from address and not the person requesting feedback' do
+      expect(email.from.first).to eql(from_email)
     end
 
     it 'contains provided invitation message' do
@@ -64,6 +69,10 @@ describe ReviewMailer do
       expect(email.to.first).to eql review.subject.email
     end
 
+    it 'declined from default email address' do
+      expect(email.from.first).to eql(from_email)
+    end
+
     it 'contains the recipients name' do
       expect(email).to have_body_text review.subject.name
     end
@@ -85,6 +94,10 @@ describe ReviewMailer do
 
     it 'is sent to the feedback subject' do
       expect(email.to.first).to eql review.subject.email
+    end
+
+    it 'comes from the default email address' do
+      expect(email.from.first).to eql(from_email)
     end
 
     it 'contains the recipients name' do
