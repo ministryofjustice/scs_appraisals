@@ -169,7 +169,7 @@ feature 'Getting feedback' do
   end
 
   def check_mail_attributes(mail, review)
-    expect(mail.subject).to eq('360 feedback request from you')
+    expect(mail.subject).to eq('Please provide 360 feedback')
     expect(mail.body.encoded).to match(review.invitation_message)
     expect(mail.body.encoded).to match('9 December 2020')
     link = links_in_email(mail).first
