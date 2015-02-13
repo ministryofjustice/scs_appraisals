@@ -47,9 +47,7 @@ group :development, :test do
   gem 'factory_girl'
   gem 'guard'
   gem 'guard-rspec', require: false
-  gem 'jshint',
-    git: 'https://github.com/threedaymonk/jshint.git',
-    branch: 'master'
+  gem 'jshint', '~> 1.3.1'
   gem 'konacha'
   gem 'pry'
   gem 'pry-rails'
