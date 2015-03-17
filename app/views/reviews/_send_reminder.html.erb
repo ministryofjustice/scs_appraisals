@@ -1,4 +1,5 @@
-<%= form_for review, url: reminders_path, method: :post do |f| %>
+<% path = @subject ? user_reminders_path(@subject) : reminders_path %>
+<%= form_for review, url: path, method: :post do |f| %>
   <%= f.hidden_field :review_id, value: review.id %>
   <%= f.button 'Send reminder' %>
 <% end %>

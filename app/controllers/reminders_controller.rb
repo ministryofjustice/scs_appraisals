@@ -1,4 +1,5 @@
 class RemindersController < ApplicationController
+  before_action :load_scoped_subject, only: [:create]
   before_action :set_review, only: [:create]
 
   def create
@@ -7,7 +8,7 @@ class RemindersController < ApplicationController
     @reminder = FeedbackRequestNotification.new(@review)
     sent = @reminder.notify
     notice :reminder_sent if sent
-    redirect_to reviews_path
+    redirect_to @subject ? user_reviews_path(@subject) : reviews_path
   end
 
 private
@@ -21,6 +22,6 @@ private
   end
 
   def scope
-    current_user.reviews
+    (@subject || current_user).reviews
   end
 end
